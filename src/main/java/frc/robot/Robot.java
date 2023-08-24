@@ -25,6 +25,11 @@ public class Robot extends TimedRobot {
   }
 
   @Override
+  public void robotPeriodic() {
+    m_swerve.updateDashboard();
+  }
+
+  @Override
   public void teleopPeriodic() {
     driveWithJoystick(true);
   }

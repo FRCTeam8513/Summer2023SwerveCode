@@ -13,18 +13,18 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 
 /** Represents a swerve drive style drivetrain. */
 public class Drivetrain {
-  public static final double kMaxSpeed = 3.0; // 3 meters per second
-  public static final double kMaxAngularSpeed = Math.PI; // 1/2 rotation per second
+  public static final double kMaxSpeed = 2; // 3 meters per second
+  public static final double kMaxAngularSpeed = Math.PI / 2; // 1/2 rotation per second
 
-  private final Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381);
-  private final Translation2d m_frontRightLocation = new Translation2d(0.381, -0.381);
-  private final Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381);
-  private final Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
+  private final Translation2d m_frontLeftLocation = new Translation2d(0.304, 0.304);
+  private final Translation2d m_frontRightLocation = new Translation2d(0.304, -0.304);
+  private final Translation2d m_backLeftLocation = new Translation2d(-0.304, 0.304);
+  private final Translation2d m_backRightLocation = new Translation2d(-0.304, -0.304);
 
-  private final SwerveModule m_frontLeft = new SwerveModule(1, 2, 0, 1, 2, 3);
-  private final SwerveModule m_frontRight = new SwerveModule(3, 4, 4, 5, 6, 7);
-  private final SwerveModule m_backLeft = new SwerveModule(5, 6, 8, 9, 10, 11);
-  private final SwerveModule m_backRight = new SwerveModule(7, 8, 12, 13, 14, 15);
+  private final SwerveModule m_frontLeft = new SwerveModule(4, 7);
+  private final SwerveModule m_frontRight = new SwerveModule(1, 5);
+  private final SwerveModule m_backLeft = new SwerveModule(2, 6 );
+  private final SwerveModule m_backRight = new SwerveModule(3, 8);
 
   private final AnalogGyro m_gyro = new AnalogGyro(0);
 
@@ -44,6 +44,11 @@ public class Drivetrain {
           });
 
   public Drivetrain() {
+    m_backLeft.name = "Back Left";
+    m_backRight.name = "Back Right";
+    m_frontLeft.name = "Front Left";
+    m_frontRight.name = "Front Right";
+
     m_gyro.reset();
   }
 
@@ -78,5 +83,12 @@ public class Drivetrain {
           m_backLeft.getPosition(),
           m_backRight.getPosition()
         });
+  }
+
+  public void updateDashboard(){
+    m_frontLeft.updateDashboard();
+    m_frontRight.updateDashboard();
+    m_backLeft.updateDashboard();
+    m_backRight.updateDashboard();
   }
 }
