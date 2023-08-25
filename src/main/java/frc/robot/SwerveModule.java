@@ -31,16 +31,14 @@ public class SwerveModule {
   public String name;
 
   // Gains are for example purposes only - must be determined for your own robot!
-  private final PIDController m_drivePIDController = new PIDController(0.4, 0.5, 0.01);
+  private final PIDController m_drivePIDController = new PIDController(0.4,0,0);
 
-  // Gains are for example purposes only - must be determined for your own robot!
-  private final ProfiledPIDController m_turningPIDController =
-      new ProfiledPIDController(
+  // Gains are for example PIDController only - must be determined for your own robot!
+  private final PIDController m_turningPIDController =
+      new PIDController(
           1,
           0,
-          0,
-          new TrapezoidProfile.Constraints(
-              kModuleMaxAngularVelocity, kModuleMaxAngularAcceleration));
+          0);
 
 
   private final double encoderTicksPerRevolutionSteer = 1656.64;
