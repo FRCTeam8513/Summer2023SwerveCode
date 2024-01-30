@@ -32,6 +32,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveWithJoystick(true);
+    if(m_controller.getRightBumper()){
+      m_swerve.resetGyro();
+    }
   }
 
   private void driveWithJoystick(boolean fieldRelative) {
